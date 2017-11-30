@@ -10,6 +10,3 @@ class Face_api:
         res = requests.post(url,headers=headers,data= str(data).replace('\'','\"'))
         if res.status_code == 200:
             return res.json()
-     
-     
-    
