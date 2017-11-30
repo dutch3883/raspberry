@@ -2,27 +2,36 @@
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
-from api_connector.face_rec_api import Face_api
-import cv
+import base64
+#from api_connector import check_image
+from api_connector import check_image
 
 def routine():
     # initialize the camera and grab a reference to the raw camera capture
     camera = PiCamera()
-    
+    camera.vflip = False
+    camera.resolution = (500,500)
+    camera.capture('Image.jpg')
+    with open("Image.jpg","rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+        print(encoded_string)
+    response = check_image(encoded_string)
+    print(response)
     # allow the camera to warmup
-    time.sleep(0.1)
+    
 
     #cv2.namedWindow('image',cv2.WINDOW_NORMAL)
     #cv2.resizeWindow('image',600,600)
     # grab an image from the camera
-    while True:
-        rawCapture = PiRGBArray(camera)
-        camera.capture(rawCapture, format="bgr")
-        image = rawCapture.array
-        img= cv.resize(image,(600,600),interpolation=cv.INTER_AREA)
-        # display the image on screen and wait for a keypress
-        Face_api.check_image(img)
-        cv.waitKey(1)
-        print('check')
+    #rawCapture = PiRGBArray(camera)
+##    while True:
+##        rawCapture = PiRGBArray(camera)
+##        print(rawCapture)
+##        # display the image on screen and wait for a keypress
+##        #Face_api.check_image(rawCapture)
+##        print('check')
+##        
+if __name__ == '__main__':
+    routine()
 
 
