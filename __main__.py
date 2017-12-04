@@ -14,7 +14,6 @@ def routine():
     camera.capture('Image.jpg')
     with open("Image.jpg","rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
-        print(encoded_string)
     response = check_image(encoded_string)
     print(response)
     # allow the camera to warmup
