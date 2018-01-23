@@ -18,7 +18,7 @@ def routine():
     print("have response {} with time= {:.3f} sec".format(response,(time_res-time_req)))
     
 if __name__ == '__main__':
-    while True:
-        routine()
+   
+    routine()
 
 
