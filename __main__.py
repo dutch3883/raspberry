@@ -24,7 +24,7 @@ def routine():
         except Exception:
             pass
     else:
-        os.rename('found/'+img_name)
+        os.rename(img_name,'found/'+img_name)
     print("pid {} have response {} with time= {:.3f} sec".format(os.getpid(),response,(time_res-time_req)))
     os._exit(0)
     
